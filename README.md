@@ -15,7 +15,7 @@ BSSecureKit is a secure view component library for iOS applications that protect
 ## Screenshot
 
 | Physical Device | iOS Simulator |
-|----------------|---------------|---------------|
+|----------------|---------------|
 | ![Physical Device](docs/images/physical_device.png) | ![iOS Simulator](docs/images/simulator.png) |
 
 ## Key Features

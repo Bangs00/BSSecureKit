@@ -9,9 +9,11 @@ import SwiftUI
 
 public struct BSSecureViewRepresentable<Content: View>: UIViewRepresentable {
     let content: Content
+    let isSecure: Bool
     
-    public init(@ViewBuilder content: () -> Content) {
+    public init(isSecure: Bool = true, @ViewBuilder content: () -> Content) {
         self.content = content()
+        self.isSecure = isSecure
     }
     
     public func makeUIView(context: Context) -> BSSecureView {
@@ -21,8 +23,11 @@ public struct BSSecureViewRepresentable<Content: View>: UIViewRepresentable {
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         
         secureView.embed(hosting.view)
+        secureView.isSecure = self.isSecure
         return secureView
     }
     
-    public func updateUIView(_ uiView: BSSecureView, context: Context) { }
+    public func updateUIView(_ uiView: BSSecureView, context: Context) { 
+        uiView.isSecure = isSecure
+    }
 }

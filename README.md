@@ -6,7 +6,8 @@
 [![Swift](https://img.shields.io/badge/swift-5.0+-orange.svg)](https://swift.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-BSSecureKit is a secure view component library for iOS applications that protects sensitive content from screenshots and screen recordings. It provides components for both UIKit and SwiftUI frameworks.
+BSSecureKit is a secure view component library for iOS applications that protects sensitive content from screenshots and screen recordings.
+It provides components for both UIKit and SwiftUI frameworks.
 
 ## Demo
 
@@ -21,6 +22,7 @@ BSSecureKit is a secure view component library for iOS applications that protect
 ## Key Features
 
 - **Secure Overlay**: Protects sensitive content from screenshots and screen recordings
+- **Dynamic Security Control**: Toggle security state on/off at runtime using `isSecure` property
 - **iOS 13.0+ Support**: Compatible with the latest iOS versions (tested up to iOS 26.0 beta 9)
 - **UIKit & SwiftUI Support**: Works with both frameworks
 - **Simple Usage**: Minimal code required to implement security features
@@ -35,14 +37,14 @@ BSSecureKit is a secure view component library for iOS applications that protect
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Bangs00/BSSecureKit.git", from: "1.0.0")
+    .package(url: "https://github.com/Bangs00/BSSecureKit.git", from: "1.1.0")
 ]
 ```
 
 ### CocoaPods
 
 ```ruby
-pod 'BSSecureKit', '~> 1.0.0'
+pod 'BSSecureKit', '~> 1.1.0'
 ```
 
 ### Manually
@@ -61,6 +63,14 @@ let secureView = BSSecureView()
 let contentLabel = UILabel()
 contentLabel.text = "Sensitive Information"
 secureView.embed(contentLabel)
+
+// Dynamic security control
+secureView.isSecure = true  // Enable security
+secureView.isSecure = false // Disable security
+
+// Alternative method using function
+secureView.setSecure(true)  // Enable security
+secureView.setSecure(false) // Disable security
 
 // With placeholder
 let placeholderView = UIView()
@@ -83,6 +93,8 @@ import SwiftUI
 import BSSecureKit
 
 struct SecureContentView: View {
+    @State private var isSecured = true
+    
     var body: some View {
         VStack {
             // Regular content
@@ -90,8 +102,15 @@ struct SecureContentView: View {
                 .padding()
                 .background(Color.orange)
             
-            // Secure content
+            // Basic secure content (always secured)
             BSSecureViewRepresentable {
+                Text("Sensitive Information")
+                    .padding()
+                    .background(Color.green)
+            }
+            
+            // Secure content with dynamic control
+            BSSecureViewRepresentable(isSecure: isSecured) {
                 Text("Sensitive Information")
                     .padding()
                     .background(Color.green)
@@ -103,11 +122,23 @@ struct SecureContentView: View {
                     .padding()
                     .background(Color.red)
                 
-                BSSecureViewRepresentable {
+                BSSecureViewRepresentable(isSecure: isSecured) {
                     Text("Actual Sensitive Information")
                         .padding()
                         .background(Color.blue)
                 }
+            }
+            
+            // Toggle button to control security state
+            Button(action: {
+                isSecured.toggle()
+            }) {
+                Text(isSecured ? "Secured" : "Not Secured")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 44)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
             }
         }
         .padding()
@@ -126,6 +157,7 @@ Each example demonstrates:
 - Comparison between regular and secure content
 - Basic secure view usage
 - Combination of placeholder and secure content
+- **Dynamic security state control** with toggle functionality
 
 ## Requirements
 

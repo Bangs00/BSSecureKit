@@ -11,6 +11,15 @@ public final class BSSecureView: UIView {
     private let secureField = UITextField()
     private let contentView = UIView()
     
+    public var isSecure: Bool {
+        get {
+            self.secureField.isSecureTextEntry
+        }
+        set {
+            self.secureField.isSecureTextEntry = newValue
+        }
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupSecureOverlay()
@@ -67,5 +76,9 @@ extension BSSecureView {
                 view.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor)
             ])
         }
+    }
+    
+    public func setSecure(_ isSecure: Bool) {
+        self.isSecure = isSecure
     }
 }

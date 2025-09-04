@@ -62,6 +62,17 @@ class ViewController: UIViewController {
         return view
     }()
     
+    // Toggle isSecure
+    private lazy var toggleButton: UIButton = {
+        var config = UIButton.Configuration.filled()
+        let view = UIButton()
+        view.configuration = config
+        view.setTitle("Secured", for: .normal)
+        view.setTitle("Not Secured", for: .selected)
+        view.addTarget(self, action: #selector(touchUpInsideToggleButton(_:)), for: .touchUpInside)
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,13 +84,22 @@ class ViewController: UIViewController {
         self.stackView.addArrangedSubview(self.visibleContentLabel)
         self.stackView.addArrangedSubview(self.secureContentView)
         self.stackView.addArrangedSubview(self.placeholderView)
+        self.view.addSubview(self.toggleButton)
         
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16),
             self.stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            self.stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            self.stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
+            self.stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+        
+        self.toggleButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.toggleButton.topAnchor.constraint(equalTo: self.stackView.bottomAnchor, constant: 16),
+            self.toggleButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            self.toggleButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            self.toggleButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            self.toggleButton.heightAnchor.constraint(equalToConstant: 44)
         ])
         
         // Basic secure content example
@@ -104,6 +124,15 @@ class ViewController: UIViewController {
             self.placeholderSecureView.trailingAnchor.constraint(equalTo: self.placeholderView.safeAreaLayoutGuide.trailingAnchor),
             self.placeholderSecureView.bottomAnchor.constraint(equalTo: self.placeholderView.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    @objc
+    private func touchUpInsideToggleButton(_ sender: UIButton) {
+        // Using variable
+        self.secureContentView.isSecure = sender.isSelected
+        // Using function
+        self.placeholderSecureView.setSecure(sender.isSelected)
+        sender.isSelected.toggle()
     }
 }
 

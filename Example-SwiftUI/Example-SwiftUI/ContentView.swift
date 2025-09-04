@@ -8,8 +8,9 @@
 import SwiftUI
 import BSSecureKit
 
-// BSSecureViewRepresentable is require iOS 13.0
 struct ContentView: View {
+    @State private var isSecured = true
+    
     var body: some View {
         VStack(spacing: 16) {
             // Visible Content Label
@@ -20,7 +21,7 @@ struct ContentView: View {
                 .foregroundColor(.black)
             
             // Secure Content
-            BSSecureViewRepresentable {
+            BSSecureViewRepresentable(isSecure: self.isSecured) {
                 Text("This is secure content")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
@@ -36,13 +37,25 @@ struct ContentView: View {
                     .background(Color.red)
                     .foregroundColor(.black)
                 
-                BSSecureViewRepresentable {
+                BSSecureViewRepresentable(isSecure: self.isSecured) {
                     Text("This is secure content")
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .padding()
                         .background(Color.blue)
                         .foregroundColor(.black)
                 }
+            }
+            
+            // Toggle Button
+            Button(action: {
+                self.isSecured.toggle()
+            }) {
+                Text(self.isSecured ? "Secured" : "Not Secured")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 44)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
             }
         }
         .padding(16)

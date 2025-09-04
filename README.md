@@ -14,9 +14,9 @@ BSSecureKit is a secure view component library for iOS applications that protect
 
 ## Screenshot
 
-| Physical Device | iOS Simulator |
+| Screenshot Result | Actual Screen |
 |----------------|---------------|
-| ![Physical Device](docs/images/physical_device.png) | ![iOS Simulator](docs/images/simulator.png) |
+| ![Screenshot Result](docs/images/physical_device.png) | ![Actual Screen](docs/images/simulator.png) |
 
 ## Key Features
 
@@ -27,7 +27,7 @@ BSSecureKit is a secure view component library for iOS applications that protect
 
 ## Important Notes
 
-⚠️ **Device Limitation**: This library only works on iOS physical devices. It does not function on iOS Simulator or Mac devices due to the nature of the security implementation.
+⚠️ **Device Limitation**: This library only works on iOS devices. It does not function on Mac devices due to the nature of the security implementation.
 
 ## Installation
 
@@ -132,7 +132,7 @@ Each example demonstrates:
 - iOS 13.0+ (tested up to iOS 26.0 beta 9)
 - Swift 5.0+
 - Xcode 12.0+
-- **iOS Physical Device** (does not work on iOS Simulator or Mac)
+- **iOS Physical Device** (does not work on Mac)
 
 ## Testing
 
@@ -140,7 +140,7 @@ This library has been tested on:
 - iOS 13.0 through iOS 26.0 beta 9
 - Both UIKit and SwiftUI implementations
 
-**Note**: The security features only work on physical iOS devices. When testing on iOS Simulator or Mac, the secure overlay will not function as expected.
+**Note**: The security features only work on physical iOS devices. When testing on Mac, the secure overlay will not function as expected.
 
 ## License
 

@@ -8,6 +8,10 @@
 
 BSSecureKit is a secure view component library for iOS applications that protects sensitive content from screenshots and screen recordings. It provides components for both UIKit and SwiftUI frameworks.
 
+| Physical Device | iOS Simulator |
+|----------------|---------------|
+| ![Physical Device](docs/images/physical_device.png) | ![iOS Simulator](docs/images/simulator.png) |
+
 ## Key Features
 
 - **Secure Overlay**: Protects sensitive content from screenshots and screen recordings

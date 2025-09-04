@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name         = "BSSecureKit"
-    spec.version      = "1.0.0"
+    spec.version      = "1.1.0"
     spec.summary      = "A secure view component for iOS applications"
     spec.description  = <<-DESC
                         BSSecureKit provides secure view components for iOS applications.

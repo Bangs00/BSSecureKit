@@ -23,7 +23,7 @@ It provides components for both UIKit and SwiftUI frameworks.
 
 - **Secure Overlay**: Protects sensitive content from screenshots and screen recordings
 - **Dynamic Security Control**: Toggle security state on/off at runtime using `isSecure` property
-- **iOS 13.0+ Support**: Compatible with the latest iOS versions (tested up to iOS 26.0 beta 9)
+- **iOS 13.0+ Support**: Compatible with the latest iOS versions (tested up to iOS 26.0)
 - **UIKit & SwiftUI Support**: Works with both frameworks
 - **Simple Usage**: Minimal code required to implement security features
 
@@ -161,7 +161,7 @@ Each example demonstrates:
 
 ## Requirements
 
-- iOS 13.0+ (tested up to iOS 26.0 beta 9)
+- iOS 13.0+ (tested up to iOS 26.0)
 - Swift 5.0+
 - Xcode 12.0+
 - **iOS Physical Device** (does not work on Mac)
@@ -169,7 +169,7 @@ Each example demonstrates:
 ## Testing
 
 This library has been tested on:
-- iOS 13.0 through iOS 26.0 beta 9
+- iOS 13.0 through iOS 26.0
 - Both UIKit and SwiftUI implementations
 
 **Note**: The security features only work on physical iOS devices. When testing on Mac, the secure overlay will not function as expected.
